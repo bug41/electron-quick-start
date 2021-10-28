@@ -2,15 +2,24 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
+const db = require('./db/stores/portItem');
+global.db = db;
+
 function createWindow () {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
+  let mainWindow =  new BrowserWindow({
+        width: 500,
+        height: 500,
+        resizable: false,
+        webPreferences: {      
+          preload: path.join(__dirname, 'preload.js'),
+          nodeIntegration: true,
+          contextIsolation: false,
+          enableRemoteModule: true
+        }
+    });
+
+  mainWindow.webContents.openDevTools()
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
