@@ -4,7 +4,7 @@
 // `nodeIntegration` is turned off. Use `preload.js` to
 // selectively enable features needed in the rendering
 // process.
-const { remote} = require('electron');
+const {remote} = require('electron');
 const dbInstance = remote.getGlobal('db');
 
 const mainProcess = require ("electron").remote;
